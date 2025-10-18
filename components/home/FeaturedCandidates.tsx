@@ -1,4 +1,4 @@
-import { fetchTrendingCandidates } from '@/lib/api';
+import { fetchCandidates } from '@/lib/api';
 import { Locale } from '@/lib/i18n-config';
 import CandidateCard from '../candidates/CandidateCard';
 import Link from 'next/link';
@@ -9,22 +9,22 @@ type FeaturedCandidatesProps = {
 }
 
 export default async function FeaturedCandidates({ dictionary, lang }: FeaturedCandidatesProps) {
-    // Fetch trending candidates with defensive error handling
-    let trendingCandidates: any[] = [];
+    // Fetch candidates with defensive error handling
+    let candidates: any[] = [];
     try {
-        trendingCandidates = await fetchTrendingCandidates();
+        candidates = await fetchCandidates({ limit: 6 });
     } catch (error) {
         if (process.env.NODE_ENV === 'development') {
-            console.error('Failed to fetch trending candidates:', error);
+            console.error('Failed to fetch candidates:', error);
         }
-        trendingCandidates = [];
+        candidates = [];
     }
 
-    // Ensure trendingCandidates is always an array with defensive checks
-    const trendingArray = Array.isArray(trendingCandidates) ? trendingCandidates : [];
+    // Ensure candidates is always an array with defensive checks
+    const candidatesArray = Array.isArray(candidates) ? candidates : [];
     
     // Filter out invalid candidates and ensure we have valid IDs
-    const validCandidates = trendingArray
+    const validCandidates = candidatesArray
         .filter(candidate => candidate && typeof candidate === 'object' && candidate.id)
         .slice(0, 6);
 
