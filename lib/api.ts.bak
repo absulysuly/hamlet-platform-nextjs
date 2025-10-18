@@ -1,0 +1,95 @@
+import axios from 'axios';
+import { Candidate, Governorate, Stats, PaginatedCandidates } from './types';
+
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4001',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export const fetchCandidates = async (params: {
+    page?: number,
+    limit?: number,
+    query?: string,
+    governorate?: string,
+    gender?: 'Male' | 'Female',
+    sort?: string,
+}): Promise<PaginatedCandidates> => {
+    const { data } = await api.get('/api/candidates', { params });
+    console.debug('fetchCandidates raw response:', data);
+    
+    // Normalize response - handle different backend response formats
+    const normalizedData = data.data || data.candidates || data || [];
+    const normalizedPagination = data.pagination || data.meta || { page: 1, limit: 20, total: 0, pages: 0 };
+    
+    return {
+        data: Array.isArray(normalizedData) ? normalizedData : [],
+        pagination: {
+            page: normalizedPagination.page || 1,
+            limit: normalizedPagination.limit || 20,
+            total: normalizedPagination.total || 0,
+            pages: normalizedPagination.pages || Math.ceil((normalizedPagination.total || 0) / (normalizedPagination.limit || 20))
+        }
+    };
+};
+
+export const fetchCandidateById = async (id: string): Promise<Candidate> => {
+    const { data } = await api.get(`/api/candidates/${id}`);
+    console.debug('fetchCandidateById raw response:', data);
+    
+    // Normalize response - handle different backend response formats
+    return data.data || data.candidate || data;
+};
+
+export const fetchTrendingCandidates = async (limit: number = 6): Promise<Candidate[]> => {
+    const { data } = await api.get('/api/candidates', { params: { limit } });
+    console.debug('fetchTrendingCandidates raw response:', data);
+    
+    // Normalize response - handle different backend response formats
+    const candidates = data.data || data.candidates || data || [];
+    return Array.isArray(candidates) ? candidates.slice(0, limit) : [];
+};
+
+export const fetchGovernorates = async (): Promise<Governorate[]> => {
+    const { data } = await api.get('/api/governorates');
+    console.debug('fetchGovernorates raw response:', data);
+    
+    // Normalize response - handle different backend response formats
+    const governorates = data.data || data.governorates || data || [];
+    return (Array.isArray(governorates) ? governorates : []).map((gov: any) => ({
+        name: gov.name || gov.name_en || '',
+        nameArabic: gov.nameArabic || gov.name_ar || gov.name || '',
+        candidates_count: gov.count || gov.candidates_count || 0
+    }));
+};
+
+export const fetchStats = async (): Promise<Stats> => {
+    try {
+        const { data } = await api.get('/api/stats');
+        console.debug('fetchStats raw response:', data);
+        
+        // Normalize response - handle different backend response formats
+        const stats = data.data || data.stats || data || {};
+        
+        return {
+            total_candidates: stats.total || stats.total_candidates || stats.totalCandidates || 0,
+            gender_distribution: {
+                Male: stats.byGender?.male || stats.gender_distribution?.Male || stats.male || 0,
+                Female: stats.byGender?.female || stats.gender_distribution?.Female || stats.female || 0
+            },
+            candidates_per_governorate: (stats.byGovernorate || stats.candidates_per_governorate || []).map((item: any) => ({
+                governorate: item.governorate || item.governorate_name || '',
+                count: item.count || item.candidate_count || 0
+            }))
+        };
+    } catch (error) {
+        console.error('Stats fetch error:', error);
+        return {
+            total_candidates: 0,
+            gender_distribution: { Male: 0, Female: 0 },
+            candidates_per_governorate: []
+        };
+    }
+};
+

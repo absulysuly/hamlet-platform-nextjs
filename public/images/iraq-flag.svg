@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <rect width="900" height="600" fill="#fff"/>
+  <rect width="900" height="200" fill="#ce1126"/>
+  <rect y="400" width="900" height="200" fill="#000"/>
+  <text x="450" y="355" font-family="Kufi, Noto Sans Arabic" font-size="120" fill="#007a3d" text-anchor="middle" font-weight="bold">الله أكبر</text>
+</svg>

@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "title": "Iraq Election Platform",
+    "description": "A modern platform to discover candidates for the Iraqi parliamentary elections. Search, compare, and stay informed."
+  },
+  "nav": {
+    "home": "Home",
+    "candidates": "Candidates",
+    "governorates": "Governorates",
+    "statistics": "Statistics",
+    "about": "About"
+  },
+  "footer": {
+    "title": "Footer",
+    "description": "Empowering voters with information.",
+    "copyright": "Iraq Election Platform. All rights reserved."
+  },
+  "page": {
+    "home": {
+      "heroTitle": "Iraqi Parliamentary Elections 2025",
+      "heroSubtitle": "Your comprehensive platform to explore candidates and make informed decisions.",
+      "search": "Search",
+      "searchPlaceholder": "Search by name, party...",
+      "totalCandidates": "Total Candidates",
+      "maleCandidates": "Male Candidates",
+      "femaleCandidates": "Female Candidates",
+      "participatingGovernorates": "Participating Governorates",
+      "featuredCandidates": "Featured Candidates",
+      "featuredCandidatesDesc": "Discover candidates who are trending in your electoral district.",
+      "browseAll": "Browse All Candidates"
+    },
+    "candidates": {
+      "title": "Browse Candidates",
+      "description": "Search and compare all candidates running for the Iraqi parliamentary election.",
+      "noResults": "No candidates found matching your search criteria."
+    },
+    "profile": {
+      "profileOf": "Profile of",
+      "candidateIn": "candidate in",
+      "candidateForParliament": "Candidate for the Iraqi Parliament",
+      "share": "Share",
+      "print": "Print",
+      "shareTitle": "Check out the profile of",
+      "shareText": "Take a look at the profile for",
+      "linkCopied": "Link copied to clipboard!",
+      "shareError": "Error sharing profile."
+    },
+    "governorates": {
+      "title": "Iraqi Governorates",
+      "description": "Explore candidates by governorate to find your local representatives."
+    },
+    "stats": {
+      "title": "Election Statistics",
+      "description": "An analytical overview of the electoral data.",
+      "totalCandidates": "Total Candidates",
+      "maleCandidates": "Male Candidates",
+      "femaleCandidates": "Female Candidates",
+      "governorates": "Governorates",
+      "candidatesPerGov": "Candidates per Governorate",
+      "numCandidates": "Number of Candidates",
+      "genderDistribution": "Gender Distribution"
+    },
+    "about": {
+      "title": "About The Platform",
+      "description": "Our mission is to provide transparent, accessible information about the Iraqi parliamentary elections to empower voters and foster democracy.",
+      "missionTitle": "Our Mission",
+      "missionText": "We strive to deliver a neutral, user-friendly platform that helps Iraqi citizens understand the political landscape, evaluate candidates, and participate confidently in the electoral process.",
+      "featuresTitle": "Key Features",
+      "feature1": "A comprehensive database of candidates with advanced search filters.",
+      "feature2": "Detailed candidate profiles including party affiliation, governorate, and ballot number.",
+      "feature3": "An interactive statistics dashboard with data visualizations.",
+      "feature4": "Bilingual support (Arabic and English) with full RTL design.",
+      "commitmentTitle": "Our Commitment to Integrity",
+      "commitmentText": "We are committed to presenting accurate, up-to-date information sourced from the Independent High Electoral Commission (IHEC). Our platform is non-partisan and dedicated solely to informing the electorate."
+    }
+  },
+  "filters": {
+    "searchByName": "Search by Name",
+    "searchPlaceholder": "Enter candidate name...",
+    "filterByGovernorate": "Filter by Governorate",
+    "allGovernorates": "All Governorates",
+    "filterByGender": "Filter by Gender",
+    "allGenders": "All Genders"
+  },
+  "candidate": {
+    "governorate": "Governorate",
+    "party": "Party",
+    "ballotNumber": "Ballot Number",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "candidateIn": "candidate in"
+  }
+}
