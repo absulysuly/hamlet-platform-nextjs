@@ -1,0 +1,13 @@
+﻿{
+  "page": {
+    "home": {
+      "featuredCandidates": "Featured Candidates",
+      "featuredCandidatesDesc": "Top candidates selected for you.",
+      "browseAll": "Browse all candidates"
+    }
+  },
+  "totalCandidates": "Total candidates",
+  "maleCandidates": "Male candidates",
+  "femaleCandidates": "Female candidates",
+  "participatingGovernorates": "Participating governorates"
+}

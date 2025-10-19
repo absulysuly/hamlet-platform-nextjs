@@ -25,3 +25,5 @@ $export | ConvertTo-Json -Depth 10 | Out-File -FilePath "E:\HamletUnified\export
 Write-Host "Export complete!"
 Write-Host "Total candidates exported: $($allCandidates.Count)"
 Write-Host "File saved to: E:\HamletUnified\exports\candidates_full.json"
+
+
