@@ -18,7 +18,7 @@ export default function StatsClient({ stats, dictionary }: StatsClientProps) {
 
     const governorateData = stats.candidates_per_governorate
         .slice() // Create a copy to avoid mutating the original prop
-        .sort((a, b) => b.candidate_count - a.candidate_count);
+        .sort((a, b) => (b.candidate_count || b.count || 0) - (a.candidate_count || a.count || 0));
 
     return (
         <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">

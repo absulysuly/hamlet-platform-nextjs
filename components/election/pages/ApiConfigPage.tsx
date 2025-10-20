@@ -50,7 +50,7 @@ const ApiConfigPage: React.FC<{ onNavigate: (path: string) => void }> = ({ onNav
                     <p className="p-8 text-center">Loading API statuses...</p>
                 ) : (
                     <div>
-                        {apiData.map((api: any) => <ApiConnectionRow key={api.id} api={api} />)}
+                        {apiData?.map((api: any) => <ApiConnectionRow key={api.id} api={api} />)}
                     </div>
                 )}
                  <div className="p-4 flex justify-end">

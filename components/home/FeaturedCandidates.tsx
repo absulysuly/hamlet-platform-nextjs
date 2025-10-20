@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useState } from 'react';
 import { fetchCandidates } from '@/lib/api';
 import { Locale } from '@/lib/i18n-config';
 import CandidateCard from '../candidates/CandidateCard';
@@ -8,23 +10,24 @@ type FeaturedCandidatesProps = {
     lang: Locale;
 }
 
-export default async function FeaturedCandidates({ dictionary, lang }: FeaturedCandidatesProps) {
-    // Fetch candidates with defensive error handling
-    let candidates: any[] = [];
-    try {
-        candidates = await fetchCandidates({ limit: 6 });
-    } catch (error) {
-        if (process.env.NODE_ENV === 'development') {
-            console.error('Failed to fetch candidates:', error);
-        }
-        candidates = [];
-    }
+export default function FeaturedCandidates({ dictionary, lang }: FeaturedCandidatesProps) {
+    const [candidates, setCandidates] = useState<any[]>([]);
 
-    // Ensure candidates is always an array with defensive checks
-    const candidatesArray = Array.isArray(candidates) ? candidates : [];
-    
-    // Filter out invalid candidates and ensure we have valid IDs
-    const validCandidates = candidatesArray
+    useEffect(() => {
+        let mounted = true;
+        (async () => {
+            try {
+                const response = await fetchCandidates({ limit: 6 });
+                if (mounted) setCandidates(Array.isArray(response?.data) ? response.data : []);
+            } catch (err) {
+                console.error('Failed to fetch candidates:', err);
+                if (mounted) setCandidates([]);
+            }
+        })();
+        return () => { mounted = false };
+    }, []);
+
+    const validCandidates = candidates
         .filter(candidate => candidate && typeof candidate === 'object' && candidate.id)
         .slice(0, 6);
 

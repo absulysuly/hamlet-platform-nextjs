@@ -1,11 +1,8 @@
-import { fetchStats } from '@/lib/api';
 import { Locale } from '@/lib/i18n-config';
 import { getDictionary } from '@/lib/dictionaries';
 import { Metadata } from 'next';
-import { FaUsers, FaUserCheck, FaMapMarkedAlt } from 'react-icons/fa';
-import StatsClient from '@/components/stats/StatsClient';
-// FIX: Add missing React import for React.ElementType
 import React from 'react';
+import StatsPageClient from '@/components/stats/StatsPageClient';
 
 export async function generateMetadata({
   params: { lang },
@@ -34,41 +31,7 @@ const StatCard: React.FC<{ icon: React.ElementType, title: string, value: string
     </div>
 )
 
-export default async function StatsPage({
-  params: { lang },
-}: {
-  params: { lang: Locale };
-}) {
+export default async function StatsPage({ params: { lang } }: { params: { lang: Locale } }) {
   const dictionary = await getDictionary(lang);
-  const stats = await fetchStats();
-
-  const mainStats = [
-    { icon: FaUsers, title: dictionary.page.stats.totalCandidates, value: stats.total_candidates },
-    { icon: FaUserCheck, title: dictionary.page.stats.maleCandidates, value: stats.gender_distribution.Male },
-    { icon: FaUserCheck, title: dictionary.page.stats.femaleCandidates, value: stats.gender_distribution.Female },
-    { icon: FaMapMarkedAlt, title: dictionary.page.stats.governorates, value: stats.candidates_per_governorate.length },
-  ];
-
-  return (
-    <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-          {dictionary.page.stats.title}
-        </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-          {dictionary.page.stats.description}
-        </p>
-      </div>
-
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {mainStats.map(stat => (
-            // FIX: Pass props explicitly to avoid type errors with spreading while using the 'key' prop.
-            <StatCard key={stat.title} icon={stat.icon} title={stat.title} value={stat.value} />
-        ))}
-      </div>
-      
-      <StatsClient stats={stats} dictionary={dictionary} />
-
-    </div>
-  );
+  return <StatsPageClient dictionary={dictionary} />;
 }

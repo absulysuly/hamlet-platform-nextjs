@@ -56,7 +56,7 @@ const ContactValidationPage: React.FC<{ onNavigate: (path: string) => void }> = 
                              {isLoading ? (
                                 <tr><td colSpan={5} className="p-8 text-center">Loading contact data...</td></tr>
                             ) : (
-                                contacts.map((contact: any) => (
+                                contacts?.map((contact: any) => (
                                     <tr key={contact.id} className="hover:bg-official-200/50">
                                         <td className="p-3 text-sm font-mono">{contact.contact}</td>
                                         <td className="p-3 text-sm hidden md:table-cell">{contact.type}</td>

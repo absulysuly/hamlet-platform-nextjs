@@ -2,9 +2,9 @@
   "/_not-found": "app/_not-found.js",
   "/test/page": "app/test/page.js",
   "/[lang]/about/page": "app/[lang]/about/page.js",
+  "/[lang]/candidates/[id]/page": "app/[lang]/candidates/[id]/page.js",
   "/[lang]/page": "app/[lang]/page.js",
   "/[lang]/governorates/page": "app/[lang]/governorates/page.js",
-  "/[lang]/candidates/[id]/page": "app/[lang]/candidates/[id]/page.js",
-  "/[lang]/stats/page": "app/[lang]/stats/page.js",
-  "/[lang]/candidates/page": "app/[lang]/candidates/page.js"
+  "/[lang]/candidates/page": "app/[lang]/candidates/page.js",
+  "/[lang]/stats/page": "app/[lang]/stats/page.js"
 }

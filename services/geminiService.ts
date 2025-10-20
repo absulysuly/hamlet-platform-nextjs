@@ -1,12 +1,13 @@
-import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
-import { User, Post } from "../types.ts";
+// import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
+// import { User, Post } from "../types.ts";
 
 const apiKey = (window as any).process?.env?.API_KEY;
 
-let ai: GoogleGenAI | null = null;
-if (apiKey && apiKey !== 'your_google_gemini_api_key_here') {
-    ai = new GoogleGenAI({ apiKey });
-}
+let ai: any = null;
+// Gemini API is currently disabled - install @google/genai package to enable
+// if (apiKey && apiKey !== 'your_google_gemini_api_key_here') {
+//     ai = new GoogleGenAI({ apiKey });
+// }
 
 export const generatePostSuggestion = async (topic: string): Promise<string> => {
     if (!ai) {
@@ -21,7 +22,7 @@ export const generatePostSuggestion = async (topic: string): Promise<string> => 
     }
     
     try {
-        const response: GenerateContentResponse = await ai.models.generateContent({
+        const response: any = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: `Generate a short, engaging social media post about: "${topic}"`
         });
@@ -48,7 +49,7 @@ export const translateText = async (text: string, targetLanguage: 'en' | 'ku' | 
             ar: 'Arabic',
         };
         
-        const response: GenerateContentResponse = await ai.models.generateContent({
+        const response: any = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: `Translate to ${languageMap[targetLanguage]}: "${text}"`
         });
@@ -61,7 +62,7 @@ export const translateText = async (text: string, targetLanguage: 'en' | 'ku' | 
     return text; // Return original text on error
 };
 
-export const generateLikelyMpResponse = async (candidate: User, question: string, recentPosts: Partial<Post>[]): Promise<string> => {
+export const generateLikelyMpResponse = async (candidate: any, question: string, recentPosts: any[]): Promise<string> => {
     if (!ai) {
         return "Thank you for your question. As an AI simulation, I'd recommend looking at the candidate's recent posts for information on this topic. A real response would be forthcoming from their office.";
     }
@@ -84,7 +85,7 @@ export const generateLikelyMpResponse = async (candidate: User, question: string
     `;
 
     try {
-        const response: GenerateContentResponse = await ai.models.generateContent({
+        const response: any = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: `Question from citizen: "${question}"`,
             config: {

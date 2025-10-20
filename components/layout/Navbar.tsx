@@ -12,11 +12,11 @@ export default function Navbar({
   lang: Locale;
 }) {
   const navLinks = [
-    { href: '/', label: dictionary.home },
-    { href: '/candidates', label: dictionary.candidates },
-    { href: '/governorates', label: dictionary.governorates },
-    { href: '/stats', label: dictionary.statistics },
-    { href: '/about', label: dictionary.about },
+    { href: '/', label: dictionary?.home || 'Home' },
+    { href: '/candidates', label: dictionary?.candidates || 'Candidates' },
+    { href: '/governorates', label: dictionary?.governorates || 'Governorates' },
+    { href: '/stats', label: dictionary?.statistics || 'Statistics' },
+    { href: '/about', label: dictionary?.about || 'About' },
   ];
 
   return (
@@ -55,3 +55,5 @@ export default function Navbar({
     </header>
   );
 }
+
+

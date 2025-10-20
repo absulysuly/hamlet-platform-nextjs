@@ -31,7 +31,7 @@ const ComparisonColumn: React.FC<{ candidate: Candidate | null }> = ({ candidate
 };
 
 
-const CandidateComparisonPage: React.FC = () => {
+const CandidateComparisonPage: React.FC<{ onNavigate?: (path: string) => void; language?: any }> = () => {
     const { candidates, isLoading } = useAllCandidatesData();
     const [candidate1Id, setCandidate1Id] = useState<string>('');
     const [candidate2Id, setCandidate2Id] = useState<string>('');

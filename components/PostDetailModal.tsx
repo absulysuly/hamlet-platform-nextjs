@@ -60,7 +60,7 @@ const PostDetailModal: React.FC<PostDetailModalProps> = ({ post, user, onClose, 
                     </div>
                     
                     {/* Content */}
-                    {post.type === 'VoiceNote' ? (
+                    {(post.type as string) === 'VoiceNote' ? (
                         <AudioPlayer src={post.mediaUrl || ''} governorate={post.author.governorate} />
                     ) : (
                         <div className="my-4">
@@ -70,7 +70,7 @@ const PostDetailModal: React.FC<PostDetailModalProps> = ({ post, user, onClose, 
                 </div>
 
                 {/* Image */}
-                {post.mediaUrl && post.type !== 'VoiceNote' && (
+                {post.mediaUrl && (post.type as string) !== 'VoiceNote' && (
                     <div className="px-2 pb-2">
                         <img
                             onClick={onClose}

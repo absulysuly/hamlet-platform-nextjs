@@ -76,7 +76,7 @@ const DataCollectionPage: React.FC<{ onNavigate: (path: string) => void }> = ({ 
                 <div className="lg:col-span-2 management-glass-card rounded-lg p-6 min-h-[400px] flex flex-col">
                     <h3 className="font-bold text-lg mb-4 text-official-900 border-b border-official-300 pb-2">Activity Log</h3>
                     <div className="flex-grow bg-official-900 rounded-md p-4 font-mono text-sm text-slate-200 overflow-y-auto h-96">
-                        {stats.log.map((entry, i) => (
+                        {stats.log.map((entry: string, i: number) => (
                             <p key={i} className={`${entry.startsWith('ERROR') ? 'text-red-400' : entry.startsWith('WARN') ? 'text-yellow-400' : 'text-slate-300'}`}>
                                 {entry}
                             </p>
